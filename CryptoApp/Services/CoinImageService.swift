@@ -20,7 +20,7 @@ class CoinImageService {
     
     init(coin: CoinModel){
         self.coin = coin
-        structType  = ErrorResponseCoin(status: ErrorCodeCoin(error_code: nil, error_message: nil))
+        structType  = ErrorResponseCoin(status: ErrorCodeCoin(errorCode: nil, errorMsg: nil))
         inserErro = InsertError(dado: structType)
         getCoinImage()
     }

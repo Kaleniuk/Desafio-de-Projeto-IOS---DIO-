@@ -57,17 +57,16 @@ class NetworkingManager {
         else { throw NetworkingError.badURLResponse }
     
         if response.statusCode == 429 {
-            
             let dados = output.data
             let decoder = JSONDecoder()
-            //print(String(data: dados, encoding: .utf8)!)
+            print(String(data: dados, encoding: .utf8)!)
             let objectType = type(of: structType)
-            guard let decodedResponse = try? decoder.decode(objectType.self, from: dados)
+            guard let decodedResponse = try? decoder.decode(ErrorResponseCoin.self, from: dados)
             else {
                 print("Erro decoder")
                 throw MyError.decodingFailed
             }
-            print(decodedResponse.status?.error_message ?? "Error de decoder" )
+            print(decodedResponse.status?.errorMsg ?? "Error de decoder" )
             let insertErroStruct = type(of: insertErro)
             throw insertErroStruct.init(dado: decodedResponse).getType()
         }

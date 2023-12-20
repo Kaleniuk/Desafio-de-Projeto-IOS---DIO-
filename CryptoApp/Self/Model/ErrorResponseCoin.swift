@@ -7,22 +7,22 @@
 
 import Foundation
 
-struct ErrorResponseCoin: Codable {
+struct ErrorResponseCoin: Decodable {
     
     let status: ErrorCodeCoin?
     
-    enum Codingkeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         
         case status
     }
 }
 
-struct ErrorCodeCoin: Codable {
+struct ErrorCodeCoin: Decodable {
     
-    let error_code: Int?
-    let error_message: String?
+    let errorCode: Int?
+    let errorMsg: String?
     
-    enum Codingkeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         
         case errorCode = "error_code"
         case errorMsg  = "error_message"

@@ -17,7 +17,7 @@ class CoinDataService {
     var coinSubscription: AnyCancellable?
     
     init() {
-        structType  = ErrorResponseCoin(status: ErrorCodeCoin(error_code: nil, error_message: nil))
+        structType  = ErrorResponseCoin(status: ErrorCodeCoin(errorCode: nil, errorMsg: nil))
         insertErro = InsertError(dado: structType)
         getCoins()
     }
@@ -55,6 +55,9 @@ struct InsertError: Error {
     let dado: ErrorResponseCoin?
     
    func getType ()-> Error {
-       return AppError.apiError((dado?.status?.error_message ?? "") + " \(dado!.status!.error_code!)" )
+       
+       let errorCode = dado?.status?.errorCode == nil ? "": String(describing:dado!.status!.errorCode!)
+       return AppError.apiError((dado?.status?.errorMsg ?? "") + errorCode)
    }
 }
+
